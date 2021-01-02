@@ -6,6 +6,10 @@
 // @author       GitHub：fa-you
 // @match        http://*/*
 // @grant        none
+// @updateURL    https://github.com/fa-you/Multi-purpose-automatic-chat-tool/blob/main/auto-chat(tampermonkey).js
+// @downloadURL  https://github.com/fa-you/Multi-purpose-automatic-chat-tool/blob/main/auto-chat(tampermonkey).js
+// @supportURL   https://github.com/fa-you/Multi-purpose-automatic-chat-tool/issues
+// @homepage     https://github.com/fa-you/Multi-purpose-automatic-chat-tool
 // ==/UserScript==
 
 (function() {
@@ -117,25 +121,7 @@ d.appendChild(classontext);
 d.appendChild(document.createElement("br"));
 var postive = document.createElement("input");
 postive.type = "text";
-postive.style = "display: inline-block;\n" +
-  "  -webkit-box-sizing: content-box;\n" +
-  "  -moz-box-sizing: content-box;\n" +
-  "  box-sizing: content-box;\n" +
-  "  padding: 2px 0;\n" +
-  "  border: 1px solid #b7b7b7;\n" +
-  "  -webkit-border-radius: 7px;\n" +
-  "  border-radius: 7px;\n" +
-  "  font: normal 16px/normal Arial Black, Gadget, sans-serif;\n" +
-  "  color: rgba(255,255,255,1);\n" +
-  "  -o-text-overflow: clip;\n" +
-  "  text-overflow: clip;\n" +
-  "  background: #39c5bb;\n" +
-  "  -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;\n" +
-  "  box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;\n" +
-  "  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);";
+postive.style = "color:#000000;";
 postive.placeholder = "输入发送按钮的id";
 postive.id = "button";
 d.appendChild(postive);
@@ -158,25 +144,7 @@ d.appendChild(classontext_textarea);
 d.appendChild(document.createElement("br"));
 var postive_textarea = document.createElement("input");
 postive_textarea.type = "text";
-postive_textarea.style = "display: inline-block;\n" +
-  "  -webkit-box-sizing: content-box;\n" +
-  "  -moz-box-sizing: content-box;\n" +
-  "  box-sizing: content-box;\n" +
-  "  padding: 2px 0;\n" +
-  "  border: 1px solid #b7b7b7;\n" +
-  "  -webkit-border-radius: 7px;\n" +
-  "  border-radius: 7px;\n" +
-  "  font: normal 16px/normal Arial Black, Gadget, sans-serif;\n" +
-  "  color: rgba(255,255,255,1);\n" +
-  "  -o-text-overflow: clip;\n" +
-  "  text-overflow: clip;\n" +
-  "  background: #39c5bb;\n" +
-  "  -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;\n" +
-  "  box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;\n" +
-  "  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);";
+postive_textarea.style = "color:#000000;";
 postive_textarea.id = "send";
 postive_textarea.placeholder = "输入发送框id";
 d.appendChild(postive_textarea);
@@ -187,25 +155,7 @@ d.appendChild(time);
 
 var time_input = document.createElement("input");
 time_input.placeholder = "输入时间间隔（s）";
-time_input.style = "display: inline-block;\n" +
-  "  -webkit-box-sizing: content-box;\n" +
-  "  -moz-box-sizing: content-box;\n" +
-  "  box-sizing: content-box;\n" +
-  "  padding: 2px 0;\n" +
-  "  border: 1px solid #b7b7b7;\n" +
-  "  -webkit-border-radius: 7px;\n" +
-  "  border-radius: 7px;\n" +
-  "  font: normal 16px/normal Arial Black, Gadget, sans-serif;\n" +
-  "  color: rgba(255,255,255,1);\n" +
-  "  -o-text-overflow: clip;\n" +
-  "  text-overflow: clip;\n" +
-  "  background: #39c5bb;\n" +
-  "  -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;\n" +
-  "  box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;\n" +
-  "  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);\n" +
-  "  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);"
+time_input.style = "color:#000000;";
 d.appendChild(time_input);
 
 var mes = document.createElement("a");
@@ -313,6 +263,5 @@ d.appendChild(document.createElement("br"));
 var tip = document.createElement("a");
 tip.innerHTML = "class定位尚不可使用，将来会更新。如遇到没有id的输入框或按钮，请F12手动添加。此脚本建议作为油猴脚本使用，把欲开车的网址加入 用户匹配 中.";
 d.appendChild(tip);
-
     // Your code here...
 })();
