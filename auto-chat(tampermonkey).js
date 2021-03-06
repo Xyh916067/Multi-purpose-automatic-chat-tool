@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         全地形云控独轮车
 // @namespace    http://tampermonkey.net/
-// @version      1.0.3
+// @version      1.0.3-fix
 // @description  用于在没有专门适配独轮车的聊天室或直播间进行定时随机发言
 // @author       GitHub：fa-you
 // @match        *://*/*
@@ -289,7 +289,7 @@ var config;
 //标记是否已启动
 var start_sign;
 var Time_input;
-
+var cycle_cluod;
 function get_config() {
   var text_list = {config: []};
   var dataroot = cloud_control_url.value;//json文件路径
@@ -306,9 +306,9 @@ function get_config() {
         judge();
       }, time_input.value * 1000);
     } else if (!text_list.config[0].start && start_sign) {
-      // console.log("停车");
+      console.log("停车");
       start_sign = false;
-      cycle_cluod = window.clearInterval(cycle_cluod);
+      clearInterval(cycle_cluod);
     }
   });
 }
