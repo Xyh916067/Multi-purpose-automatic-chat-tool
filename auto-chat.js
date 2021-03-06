@@ -1,3 +1,16 @@
+// ==UserScript==
+// @name         全地形独轮车
+// @namespace    http://tampermonkey.net/
+// @version      1.0.1
+// @description  用于在没有专门适配独轮车的聊天室或直播间进行定时随机发言
+// @author       GitHub：fa-you
+// @match        http://*/*
+// @grant        none
+// @supportURL   https://github.com/fa-you/Multi-purpose-automatic-chat-tool/issues
+// @homepage     https://github.com/fa-you/Multi-purpose-automatic-chat-tool
+// @require      https://code.jquery.com/jquery-3.6.0.min.js
+// ==/UserScript==
+
 //创建进入按钮
 var start = document.createElement("input");
 start.type = "button";
@@ -274,7 +287,7 @@ var config;
 //标记是否已启动
 var start_sign;
 var Time_input;
-
+var cycle_cluod;
 function get_config() {
   var text_list = {config: []};
   var dataroot = cloud_control_url.value;//json文件路径
@@ -291,9 +304,9 @@ function get_config() {
         judge();
       }, time_input.value * 1000);
     } else if (!text_list.config[0].start && start_sign) {
-      // console.log("停车");
+      console.log("停车");
       start_sign = false;
-      cycle_cluod = window.clearInterval(cycle_cluod);
+      clearInterval(cycle_cluod);
     }
   });
 }
