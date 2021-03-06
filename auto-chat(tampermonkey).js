@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         全地形云控独轮车
 // @namespace    http://tampermonkey.net/
-// @version      1.0.2
+// @version      1.0.3
 // @description  用于在没有专门适配独轮车的聊天室或直播间进行定时随机发言
 // @author       GitHub：fa-you
 // @match        *://*/*
