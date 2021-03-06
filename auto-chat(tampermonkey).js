@@ -1,15 +1,14 @@
 // ==UserScript==
-// @name         全地形独轮车
+// @name         全地形云控独轮车
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.0.2
 // @description  用于在没有专门适配独轮车的聊天室或直播间进行定时随机发言
 // @author       GitHub：fa-you
-// @match        http://*/*
+// @match        *://*/*
 // @grant        none
-// @updateURL    https://github.com/fa-you/Multi-purpose-automatic-chat-tool/blob/main/auto-chat(tampermonkey).js
-// @downloadURL  https://github.com/fa-you/Multi-purpose-automatic-chat-tool/blob/main/auto-chat(tampermonkey).js
 // @supportURL   https://github.com/fa-you/Multi-purpose-automatic-chat-tool/issues
 // @homepage     https://github.com/fa-you/Multi-purpose-automatic-chat-tool
+// @require      https://code.jquery.com/jquery-3.6.0.min.js
 // ==/UserScript==
 
 (function() {
@@ -119,6 +118,7 @@ d.appendChild(document.createElement("br"));
 d.appendChild(classon);
 d.appendChild(classontext);
 d.appendChild(document.createElement("br"));
+
 var postive = document.createElement("input");
 postive.type = "text";
 postive.style = "color:#000000;";
@@ -148,6 +148,28 @@ postive_textarea.style = "color:#000000;";
 postive_textarea.id = "send";
 postive_textarea.placeholder = "输入发送框id";
 d.appendChild(postive_textarea);
+
+var cloud_control_text = document.createElement("a");
+cloud_control_text.innerHTML = "---云端配置文件设置---";
+d.appendChild(cloud_control_text);
+
+var cloud_control = document.createElement("input");
+cloud_control.type = "text";
+cloud_control.style = "color:#000000;";
+cloud_control.id = "cloud_control_id";
+cloud_control.placeholder = "输入云端配置文件id";
+d.appendChild(cloud_control);
+
+var cloud_control_url_text = document.createElement("a");
+cloud_control_url_text.innerHTML = "---云端配置文件url---";
+d.appendChild(cloud_control_url_text);
+
+var cloud_control_url = document.createElement("input");
+cloud_control_url.type = "text";
+cloud_control_url.style = "color:#000000;";
+cloud_control_url.id = "cloud_control_url_id";
+cloud_control_url.placeholder = "输入云端配置文件url";
+d.appendChild(cloud_control_url);
 
 var time = document.createElement("a");
 time.innerHTML = "---时间间隔设置---";
@@ -243,6 +265,7 @@ function caron() {
 
 
 d.appendChild(stop);
+var sand_id;
 
 function judge() {
   text_id = document.getElementById("text").value;
@@ -250,10 +273,8 @@ function judge() {
   send = document.getElementById("send").value;
   button_id = document.getElementById(button.id).value;
   if (classon_textarea.checked == false) {
-    // alert(classon_textarea.checked);
     document.getElementById(send).value = bullet[Math.floor(Math.random() * bullet.length)];
   } else {
-    // alert(classon_textarea.checked);
     document.getElementsByClassName(send).value = bullet[Math.floor(Math.random() * bullet.length)];
   }
   document.getElementById(button_id).click();
@@ -263,5 +284,40 @@ d.appendChild(document.createElement("br"));
 var tip = document.createElement("a");
 tip.innerHTML = "class定位尚不可使用，将来会更新。如遇到没有id的输入框或按钮，请F12手动添加。此脚本建议作为油猴脚本使用，把欲开车的网址加入 用户匹配 中.";
 d.appendChild(tip);
-    // Your code here...
+//创建用于存放返回数值的 config
+var config;
+//标记是否已启动
+var start_sign;
+var Time_input;
+
+function get_config() {
+  var text_list = {config: []};
+  var dataroot = cloud_control_url.value;//json文件路径
+  $.getJSON(dataroot, function (data) {
+    text_list.config = data[cloud_control.value];
+
+    text.value = text_list.config[0].message;
+    time_input.value = text_list.config[0].cd;
+    postive.value = text_list.config[0].button;
+    postive_textarea.value = text_list.config[0].textbox;
+    if (text_list.config[0].start && !start_sign) {
+      start_sign = true;
+      cycle_cluod = setInterval(function () {
+        judge();
+      }, time_input.value * 1000);
+    } else if (!text_list.config[0].start && start_sign) {
+      // console.log("停车");
+      start_sign = false;
+      cycle_cluod = window.clearInterval(cycle_cluod);
+    }
+  });
+}
+
+//把json内的数据同步到对应文本框
+setInterval(function () {
+  Time_input = time_input.value;
+  if (cloud_control_url.value != "" && cloud_control.value != "") {
+    get_config();
+  }
+}, 1000);
 })();
